@@ -80,8 +80,8 @@ class ViewController: UIViewController {
             // TODO: Save the data
             do {
                 try self.context.save()
-            } catch {
-                
+            } catch let error {
+                print(error.localizedDescription)
             }
             
             // TODO: Re-fetch the data
@@ -170,8 +170,8 @@ extension ViewController: UITableViewDelegate {
             // TODO: Save the data
             do {
                 try self.context.save()
-            } catch {
-                
+            } catch let error {
+                print(error.localizedDescription)
             }
             
             // TODO: Re-fetch the data
@@ -195,8 +195,8 @@ extension ViewController: UITableViewDelegate {
             // TODO: Save the data
             do {
                 try self.context.save()
-            } catch {
-                
+            } catch let error {
+                print(error.localizedDescription)
             }
             
             // TODO: Re-fetch the data
