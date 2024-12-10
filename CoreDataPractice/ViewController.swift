@@ -24,6 +24,7 @@ class ViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
+        // Changing the background image for the view in Table View
         tableView.backgroundView = UIImageView(image: UIImage(named: "phoneBookPicture2"))
         tableView.backgroundView?.contentMode = .scaleAspectFill
         
