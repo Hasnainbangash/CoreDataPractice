@@ -11,6 +11,7 @@ import CoreData
 class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     // Reference to Imanaged object context
     let context = PersistentStorage.shared.context
@@ -23,6 +24,8 @@ class ViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        searchBar.delegate = self
         
         // Changing the background image for the view in Table View
         tableView.backgroundView = UIImageView(image: UIImage(named: "phoneBookPicture2"))
@@ -108,6 +111,33 @@ class ViewController: UIViewController {
         
     }
     
+    func filterContent(for searchText: String) {
+        if searchText.isEmpty {
+            fetchPeople()
+        } else {
+            let request = Person.fetchRequest() as NSFetchRequest<Person>
+            let pred = NSPredicate(format: "name CONTAINS %@", searchText)
+            request.predicate = pred
+            
+            do {
+                self.item = try context.fetch(request)
+                tableView.reloadData()
+            } catch {
+                
+            }
+        }
+    }
+}
+
+extension ViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filterContent(for: searchText)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        filterContent(for: searchBar.text ?? "")
+    }
 }
 
 extension ViewController: UITableViewDataSource {
