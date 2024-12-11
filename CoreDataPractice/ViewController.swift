@@ -37,7 +37,12 @@ class ViewController: UIViewController {
     
     func fetchPeople() {
         do {
-            self.item = try context.fetch(Person.fetchRequest())
+            
+            let request = Person.fetchRequest() as NSFetchRequest<Person>
+            let sort = NSSortDescriptor(key: "name", ascending: true)
+            request.sortDescriptors = [sort]
+            
+            self.item = try context.fetch(request)
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -119,9 +124,14 @@ class ViewController: UIViewController {
             let pred = NSPredicate(format: "name CONTAINS %@", searchText)
             request.predicate = pred
             
+            let sort = NSSortDescriptor(key: "name", ascending: true)
+            request.sortDescriptors = [sort]
+
             do {
                 self.item = try context.fetch(request)
-                tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             } catch let error {
                 print(error.localizedDescription)
             }
