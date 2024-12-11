@@ -52,15 +52,19 @@ class ViewController: UIViewController {
         // Add text fields to the alert controller
         alert.addTextField { (textField) in
             textField.placeholder = "Enter Name"
+            textField.autocapitalizationType = .words
         }
         alert.addTextField { (textField) in
             textField.placeholder = "Enter Age"
+            textField.autocapitalizationType = .words
         }
         alert.addTextField { (textField) in
             textField.placeholder = "Enter Gender"
+            textField.autocapitalizationType = .words
         }
         alert.addTextField { (textField) in
             textField.placeholder = "Enter PhoneNo"
+            textField.autocapitalizationType = .words
         }
         
         let submitButton = UIAlertAction(title: "Add", style: .default) { (action) in
@@ -137,15 +141,19 @@ extension ViewController: UITableViewDelegate {
         // Add text fields to the alert controller
         alert.addTextField { (textField) in
             textField.placeholder = "Enter Name"
+            textField.autocapitalizationType = .words
         }
         alert.addTextField { (textField) in
             textField.placeholder = "Enter Age"
+            textField.autocapitalizationType = .words
         }
         alert.addTextField { (textField) in
             textField.placeholder = "Enter Gender"
+            textField.autocapitalizationType = .words
         }
         alert.addTextField { (textField) in
             textField.placeholder = "Enter PhoneNo"
+            textField.autocapitalizationType = .words
         }
         
         let nameTextField = alert.textFields![0]
