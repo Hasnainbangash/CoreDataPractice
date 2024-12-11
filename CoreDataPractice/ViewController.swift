@@ -137,6 +137,7 @@ extension ViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         filterContent(for: searchBar.text ?? "")
+        tableView.reloadData()
     }
 }
 
