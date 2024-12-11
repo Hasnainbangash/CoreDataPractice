@@ -43,8 +43,8 @@ class ViewController: UIViewController {
                 self.tableView.reloadData()
             }
             
-        } catch {
-            
+        } catch let error {
+            print(error.localizedDescription)
         }
     }
     
@@ -122,8 +122,8 @@ class ViewController: UIViewController {
             do {
                 self.item = try context.fetch(request)
                 tableView.reloadData()
-            } catch {
-                
+            } catch let error {
+                print(error.localizedDescription)
             }
         }
     }
