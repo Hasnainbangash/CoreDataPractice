@@ -90,7 +90,13 @@ class ViewController: UIViewController {
             
         }
         
+        // Cancel Button
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            print("Cancel Button is pressed")
+        }
+        
         alert.addAction(submitButton)
+        alert.addAction(cancelButton)
         
         self.present(alert, animated: true, completion: nil)
         
