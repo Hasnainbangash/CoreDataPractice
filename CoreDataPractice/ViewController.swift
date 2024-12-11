@@ -179,7 +179,12 @@ extension ViewController: UITableViewDelegate {
             self.fetchPeople()
         }
         
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            print("Cancel Button is pressed")
+        }
+        
         alert.addAction(saveButton)
+        alert.addAction(cancelButton)
         self.present(alert, animated: true, completion: nil)
     }
     
