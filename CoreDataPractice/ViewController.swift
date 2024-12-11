@@ -53,18 +53,20 @@ class ViewController: UIViewController {
         alert.addTextField { (textField) in
             textField.placeholder = "Enter Name"
             textField.autocapitalizationType = .words
+            textField.keyboardType = .default
         }
         alert.addTextField { (textField) in
             textField.placeholder = "Enter Age"
-            textField.autocapitalizationType = .words
+            textField.keyboardType = .numberPad
         }
         alert.addTextField { (textField) in
             textField.placeholder = "Enter Gender"
             textField.autocapitalizationType = .words
+            textField.keyboardType = .default
         }
         alert.addTextField { (textField) in
             textField.placeholder = "Enter PhoneNo"
-            textField.autocapitalizationType = .words
+            textField.keyboardType = .phonePad
         }
         
         let submitButton = UIAlertAction(title: "Add", style: .default) { (action) in
@@ -142,18 +144,20 @@ extension ViewController: UITableViewDelegate {
         alert.addTextField { (textField) in
             textField.placeholder = "Enter Name"
             textField.autocapitalizationType = .words
+            textField.keyboardType = .default
         }
         alert.addTextField { (textField) in
             textField.placeholder = "Enter Age"
-            textField.autocapitalizationType = .words
+            textField.keyboardType = .numberPad
         }
         alert.addTextField { (textField) in
             textField.placeholder = "Enter Gender"
             textField.autocapitalizationType = .words
+            textField.keyboardType = .default
         }
         alert.addTextField { (textField) in
             textField.placeholder = "Enter PhoneNo"
-            textField.autocapitalizationType = .words
+            textField.keyboardType = .phonePad
         }
         
         let nameTextField = alert.textFields![0]
