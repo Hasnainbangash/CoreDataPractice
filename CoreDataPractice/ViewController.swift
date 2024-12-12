@@ -18,9 +18,14 @@ class ViewController: UIViewController {
     
     var item: [Person]?
     
+    var differentNames: [String: [String]] = [:]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+//        seperateOneValue(value: "F")
+        seperateAllValues()
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -52,6 +57,48 @@ class ViewController: UIViewController {
             print(error.localizedDescription)
         }
     }
+    
+    func seperateOneValue(value: String) {
+        do {
+            let request = Person.fetchRequest() as NSFetchRequest<Person>
+            let pred = NSPredicate(format: "name CONTAINS %@", value)
+            request.predicate = pred
+            self.item = try context.fetch(request)
+            for i in item! {
+                if differentNames[value] == nil {
+                    differentNames[value] = []
+                }
+                differentNames[value]?.append(i.name ?? "Nil")
+            }
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        print(differentNames)
+    }
+    
+    func seperateAllValues() {
+        do {
+            let request = Person.fetchRequest() as NSFetchRequest<Person>
+            self.item = try context.fetch(request)
+            
+            for person in item! {
+                if let name = person.name, !name.isEmpty {
+                    let firstLetter = String(name.prefix(1))/*.uppercased()*/
+                    
+                    if differentNames[firstLetter] == nil {
+                        differentNames[firstLetter] = []
+                    }
+
+                    differentNames[firstLetter]?.append(name)
+                }
+            }
+            
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        print(differentNames)
+    }
+    
     
     @IBAction func addTapped(_ sender: Any) {
         
@@ -126,7 +173,7 @@ class ViewController: UIViewController {
             
             let sort = NSSortDescriptor(key: "name", ascending: true)
             request.sortDescriptors = [sort]
-
+            
             do {
                 self.item = try context.fetch(request)
                 DispatchQueue.main.async {
@@ -200,6 +247,7 @@ extension ViewController: UITableViewDelegate {
             textField.placeholder = "Enter PhoneNo"
             textField.keyboardType = .phonePad
         }
+        
         
         let nameTextField = alert.textFields![0]
         nameTextField.text = person.name
